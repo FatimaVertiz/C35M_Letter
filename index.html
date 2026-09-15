@@ -1,396 +1,440 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#050505" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Una carta para Marisela</title>
+
   <style>
-    :root {
-      --gold: #d8bf8a;
-      --gold-soft: #bca476;
-      --cream: #f4e8c9;
-      --red: #850d18;
+    * {
+      box-sizing: border-box;
     }
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+    }
+
     body {
-      min-height: 100svh;
+      min-height: 100vh;
       background:
-        radial-gradient(circle at 50% 12%, rgba(125, 17, 24, .26), transparent 32%),
-        radial-gradient(circle at 50% 72%, rgba(120, 91, 43, .10), transparent 45%),
-        #050505;
-      color: var(--cream);
+        radial-gradient(circle at top, #283026 0%, #111612 45%, #050706 100%);
+      color: #F2E6C8;
       font-family: Georgia, "Times New Roman", serif;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .22;
-      background-image:
-        radial-gradient(circle at 10% 16%, #eadbb7 0 1px, transparent 1.5px),
-        radial-gradient(circle at 78% 12%, #eadbb7 0 1px, transparent 1.5px),
-        radial-gradient(circle at 25% 34%, #eadbb7 0 1px, transparent 1.5px),
-        radial-gradient(circle at 91% 43%, #eadbb7 0 1px, transparent 1.5px),
-        radial-gradient(circle at 13% 67%, #eadbb7 0 1px, transparent 1.5px),
-        radial-gradient(circle at 71% 80%, #eadbb7 0 1px, transparent 1.5px),
-        radial-gradient(circle at 46% 91%, #eadbb7 0 1px, transparent 1.5px);
-      background-size: 100% 100%;
     }
 
     .page {
-      width: min(100%, 520px);
-      min-height: 100svh;
+      width: 100%;
+      max-width: 500px;
+      min-height: 100vh;
       margin: 0 auto;
-      padding: max(18px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+      padding: 20px 20px 45px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
     }
 
-    .eyebrow {
-      margin: 2px 0 6px;
+    .title {
+      margin: 12px 0 4px;
       text-align: center;
-      color: var(--gold-soft);
-      font-size: 11px;
-      letter-spacing: .26em;
-      text-transform: uppercase;
+      font-size: 28px;
+      font-weight: normal;
+      letter-spacing: 1px;
+      color: #F1DFB5;
+      text-shadow: 0 2px 8px #000;
     }
 
-    h1 {
-      margin: 0;
+    .subtitle {
+      margin: 0 0 10px;
       text-align: center;
-      font-size: clamp(25px, 7vw, 34px);
-      line-height: 1.1;
-      font-weight: 500;
-      letter-spacing: .03em;
-      text-shadow: 0 2px 18px rgba(0,0,0,.8);
+      font-size: 14px;
+      color: #C8B990;
+      letter-spacing: 1px;
     }
 
-    .rule {
-      width: 135px;
-      height: 1px;
-      margin: 13px auto 0;
-      background: linear-gradient(90deg, transparent, #8f7042, transparent);
-    }
-
-    .owl-wrap {
+    /* HEDWIG */
+    .owl-container {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 18px;
+      margin-top: 4px;
     }
 
-    .owl-card {
-      width: min(78vw, 350px);
-      aspect-ratio: 9 / 16;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #0a0807;
-      box-shadow:
-        0 22px 55px rgba(0,0,0,.62),
-        0 0 0 1px rgba(216,191,138,.13);
-    }
-
-    .owl-card video {
-      width: 100%;
-      height: 100%;
+    .owl-video {
       display: block;
-      object-fit: cover;
+      width: min(100%, 420px);
+      max-height: 38vh;
+      object-fit: contain;
+      background: transparent;
     }
 
-    .copy {
-      margin-top: 18px;
+    /* VOLUME */
+    .sound-message {
+      margin-top: 8px;
+      margin-bottom: 12px;
       text-align: center;
-      padding: 0 12px;
-    }
-
-    .copy-main {
-      font-size: 13px;
-      letter-spacing: .05em;
-      color: #eadbbd;
-    }
-
-    .copy-sub {
-      margin-top: 5px;
-      color: #b6a27c;
-      font-style: italic;
       font-size: 15px;
+      color: #DDCCA4;
     }
 
+    .volume-button {
+      border: 1px solid rgba(226, 201, 145, 0.55);
+      background: rgba(0, 0, 0, 0.35);
+      color: #F5E6BF;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.35);
+    }
+
+    .volume-button:active {
+      transform: scale(.97);
+    }
+
+    /* ENVELOPE */
     .envelope-button {
-      width: min(84vw, 365px);
-      margin: 14px 0 0;
+      width: 100%;
+      max-width: 390px;
       padding: 0;
       border: 0;
       background: transparent;
       cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .18s ease, filter .18s ease;
-    }
-
-    .envelope-button:hover { filter: brightness(1.06); }
-    .envelope-button:active { transform: scale(.965); }
-
-    .envelope-shell {
       position: relative;
-      padding: 6px;
-      border-radius: 5px;
-      background: linear-gradient(135deg, #7b5b2c, #312315 50%, #8f6c34);
-      box-shadow: 0 16px 38px rgba(0,0,0,.62), 0 0 0 1px rgba(245,225,185,.08);
+      animation: floatEnvelope 3s ease-in-out infinite;
     }
 
-    .envelope-shell::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 3px;
-      box-shadow: inset 0 0 28px rgba(154, 12, 22, .11), 0 0 22px rgba(154,12,22,.08);
-      pointer-events: none;
-    }
-
-    .envelope-shell img {
+    .envelope-button img {
+      display: block;
       width: 100%;
       height: auto;
+      filter: drop-shadow(0 13px 16px rgba(0,0,0,.55));
+    }
+
+    @keyframes floatEnvelope {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .open-text {
+      margin-top: 19px;
+      text-align: center;
+      color: #EADBB5;
+      font-size: 17px;
+      line-height: 1.5;
+      letter-spacing: .4px;
+    }
+
+    .open-text span {
       display: block;
+      margin-top: 4px;
+      color: #BBA87C;
+      font-size: 13px;
     }
 
-    .tap-label {
-      margin-top: 11px;
-      color: #efe0bd;
-      font-size: 12px;
-      letter-spacing: .07em;
-      text-shadow: 0 2px 10px rgba(0,0,0,.65);
-    }
-
-    .audio-status {
-      margin-top: 12px;
-      border: 1px solid rgba(216,191,138,.32);
-      border-radius: 999px;
-      padding: 9px 14px;
-      background: rgba(216,191,138,.07);
-      color: #eadbbd;
-      font: inherit;
-      font-size: 12px;
-      letter-spacing: .06em;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .audio-status:active { transform: scale(.97); }
-
-    footer {
-      margin-top: auto;
-      padding-top: 20px;
-      color: #615746;
-      font-size: 11px;
-      letter-spacing: .05em;
-    }
-
-    /* Modal */
+    /* MODAL */
     .modal {
       position: fixed;
       inset: 0;
-      z-index: 50;
-      display: flex;
+      z-index: 100;
+      display: none;
       align-items: center;
       justify-content: center;
-      padding: 14px;
-      background: rgba(0,0,0,.86);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .22s ease, visibility .22s ease;
-      backdrop-filter: blur(8px);
+      padding: 18px;
+      background: rgba(0, 0, 0, .88);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
-    .modal.open {
-      opacity: 1;
-      visibility: visible;
+    .modal.show {
+      display: flex;
+      animation: fadeIn .35s ease;
     }
 
-    .letter-wrap {
-      width: min(94vw, 650px);
-      max-height: 94svh;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .letter-wrapper {
       position: relative;
-      transform: translateY(22px) scale(.96);
-      transition: transform .28s cubic-bezier(.2,.75,.25,1);
-    }
-
-    .modal.open .letter-wrap {
-      transform: translateY(0) scale(1);
-    }
-
-    .letter-wrap::before {
-      content: "";
-      position: absolute;
-      inset: -8px;
-      border: 1px solid rgba(214,185,125,.18);
-      box-shadow: 0 0 55px rgba(181,35,42,.12);
-      pointer-events: none;
-    }
-
-    .letter {
       width: 100%;
-      max-height: 94svh;
-      overflow: auto;
-      display: block;
-      background: #efe5c8;
-      box-shadow: 0 30px 90px rgba(0,0,0,.80);
-      -webkit-overflow-scrolling: touch;
+      max-width: 650px;
+      max-height: 94vh;
+      display: flex;
+      justify-content: center;
+      animation: revealLetter .55s cubic-bezier(.2,.8,.2,1);
     }
 
-    .letter img {
+    @keyframes revealLetter {
+      from {
+        opacity: 0;
+        transform: scale(.82) translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .letter-image {
       display: block;
-      width: 100%;
+      max-width: 100%;
+      max-height: 92vh;
+      width: auto;
       height: auto;
+      object-fit: contain;
+      box-shadow: 0 16px 50px rgba(0,0,0,.65);
     }
 
-    .close {
+    .close-button {
       position: absolute;
-      top: -6px;
-      right: -3px;
-      z-index: 3;
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(236,216,174,.26);
+      top: -12px;
+      right: -7px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,.3);
       border-radius: 50%;
-      background: rgba(10,8,7,.82);
-      color: #f2dfb9;
+      background: rgba(15, 15, 15, .9);
+      color: white;
       font-size: 25px;
-      line-height: 1;
+      line-height: 36px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,.35);
+      z-index: 5;
     }
 
-    .hint-note {
-      position: absolute;
-      left: 50%;
-      bottom: -26px;
-      transform: translateX(-50%);
-      width: max-content;
-      max-width: 90vw;
-      color: #b4a27e;
-      font-size: 10px;
-      letter-spacing: .05em;
-    }
+    @media (max-width: 480px) {
+      .page {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
 
-    @media (max-height: 740px) {
-      .owl-card { width: min(67vw, 285px); }
-      .owl-wrap { margin-top: 9px; }
-      .copy { margin-top: 11px; }
-      .envelope-button { width: min(73vw, 315px); margin-top: 9px; }
-      footer { display: none; }
-    }
+      .title {
+        font-size: 24px;
+      }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .owl-video {
+        max-height: 34vh;
+      }
+
+      .envelope-button {
+        max-width: 350px;
+      }
+
+      .modal {
+        padding: 9px;
+      }
+
+      .letter-image {
+        max-height: 95vh;
+      }
+
+      .close-button {
+        top: 3px;
+        right: 3px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <div class="eyebrow">Una entrega especial</div>
-    <h1>Hay una carta para ti</h1>
-    <div class="rule"></div>
 
-    <section class="owl-wrap" aria-label="Hedwig">
-      <div class="owl-card">
-        <video autoplay muted loop playsinline preload="auto">
-          <source src="assets/hedwig.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </section>
-
-    <section class="copy">
-      <div class="copy-main">Hedwig ha dejado una entrega especial</div>
-      <div class="copy-sub">Activa el volumen para escuchar la magia</div>
-    </section>
-
-    <button class="envelope-button" id="openLetter" aria-label="Abrir la carta">
-      <div class="envelope-shell">
-        <img src="assets/envelope.png" alt="Sobre sellado con una H" />
-      </div>
-      <div class="tap-label">✦ Toca el sobre para abrirlo ✦</div>
-    </button>
-
-    <button class="audio-status" id="audioStatus" type="button" aria-label="Activar o silenciar música">🔊 Activa el volumen</button>
-    <footer>Una pequeña sorpresa mágica ✦</footer>
-  </main>
-
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="letter-wrap" role="dialog" aria-modal="true" aria-label="Carta de Hogwarts">
-      <button class="close" id="closeLetter" aria-label="Cerrar carta">×</button>
-      <div class="letter">
-        <img src="assets/carta-hogwarts.png" alt="Carta de Hogwarts para Marisela" />
-      </div>
-      <div class="hint-note">Toca fuera de la carta para cerrar</div>
-    </div>
-  </div>
-
-  <audio id="music" loop preload="auto">
-    <source src="assets/hedwig-theme.mp3" type="audio/mpeg" />
+  <!-- AUDIO -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="./hedwig-theme.mp3" type="audio/mpeg">
   </audio>
 
-  <script>
-    const modal = document.getElementById('modal');
-    const openLetter = document.getElementById('openLetter');
-    const closeLetter = document.getElementById('closeLetter');
-    const music = document.getElementById('music');
-    const audioStatus = document.getElementById('audioStatus');
+  <main class="page">
 
-    async function startMusic() {
-      music.volume = 0.55;
+    <h1 class="title">Una entrega especial</h1>
+    <p class="subtitle">HOGWARTS POST</p>
+
+    <!-- VIDEO HEDWIG -->
+    <div class="owl-container">
+      <video
+        class="owl-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="./hedwig.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- SOUND -->
+    <div class="sound-message">
+      Activa el volumen para escuchar la magia
+    </div>
+
+    <button
+      class="volume-button"
+      id="volumeButton"
+      type="button"
+      aria-label="Activar o desactivar música"
+    >
+      :loud_sound: Activa el volumen
+    </button>
+
+    <!-- ENVELOPE -->
+    <button
+      class="envelope-button"
+      id="openLetter"
+      type="button"
+      aria-label="Abrir carta"
+    >
+      <img
+        src="./envelope.png"
+        alt="Carta de Hogwarts"
+      >
+    </button>
+
+    <div class="open-text">
+      Haz clic en el sobre para abrir la carta que te entregó Hedwig
+      <span>Tu viaje está por comenzar...</span>
+    </div>
+
+  </main>
+
+  <!-- LETTER MODAL -->
+  <div class="modal" id="letterModal">
+
+    <div class="letter-wrapper">
+
+      <button
+        class="close-button"
+        id="closeLetter"
+        type="button"
+        aria-label="Cerrar carta"
+      >
+        ×
+      </button>
+
+      <img
+        class="letter-image"
+        src="./carta-hogwarts.png"
+        alt="Carta para Marisela"
+      >
+
+    </div>
+
+  </div>
+
+  <script>
+    const music = document.getElementById("backgroundMusic");
+    const volumeButton = document.getElementById("volumeButton");
+
+    const openLetter = document.getElementById("openLetter");
+    const closeLetter = document.getElementById("closeLetter");
+    const letterModal = document.getElementById("letterModal");
+
+    let musicEnabled = false;
+
+    music.volume = 0.65;
+
+    /*
+      Los navegadores móviles suelen bloquear audio automático
+      con sonido. Intentamos reproducirlo al cargar y, si el
+      navegador lo bloquea, el botón lo activa con el primer toque.
+    */
+    window.addEventListener("load", async () => {
       try {
         await music.play();
-        audioStatus.textContent = '🔊 Música activada';
-      } catch (err) {
-        audioStatus.textContent = '🔊 Activa el volumen';
-      }
-    }
-
-    // Intenta iniciar la música desde que carga la página.
-    // Safari/Chrome móvil pueden bloquear audio con sonido hasta el primer toque.
-    window.addEventListener('load', startMusic);
-
-    audioStatus.addEventListener('click', async () => {
-      if (music.paused) {
-        await startMusic();
-      } else {
-        music.pause();
-        audioStatus.textContent = '🔇 Música silenciada · toca para activar';
+        musicEnabled = true;
+        volumeButton.textContent = ":loud_sound: Música activada";
+      } catch (error) {
+        musicEnabled = false;
+        volumeButton.textContent = ":loud_sound: Activa el volumen";
       }
     });
 
-    // Si el navegador bloqueó autoplay, el primer toque en cualquier parte activa la música.
-    document.addEventListener('pointerdown', () => {
-      if (music.paused) startMusic();
-    }, { once: true });
+    async function activateMusic() {
+      try {
+        music.muted = false;
+        await music.play();
+        musicEnabled = true;
+        volumeButton.textContent = ":loud_sound: Música activada";
+      } catch (error) {
+        console.log("El navegador requiere interacción para reproducir audio.");
+      }
+    }
 
-    openLetter.addEventListener('click', () => {
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    volumeButton.addEventListener("click", async () => {
+
+      if (!musicEnabled || music.paused) {
+        await activateMusic();
+      } else {
+        music.pause();
+        musicEnabled = false;
+        volumeButton.textContent = ":mute: Música desactivada";
+      }
+
+    });
+
+    openLetter.addEventListener("click", async () => {
+
+      /*
+        El toque sobre la carta también puede iniciar la música
+        si Safari/Chrome bloqueó el autoplay.
+      */
+      if (!musicEnabled || music.paused) {
+        await activateMusic();
+      }
+
+      letterModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+
     });
 
     function closeModal() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      letterModal.classList.remove("show");
+      document.body.style.overflow = "";
     }
 
-    closeLetter.addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) closeModal();
+    closeLetter.addEventListener("click", closeModal);
+
+    letterModal.addEventListener("click", (event) => {
+      if (event.target === letterModal) {
+        closeModal();
+      }
     });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeModal();
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
     });
+
+    /*
+      En algunos celulares el primer toque en cualquier parte
+      de la página permite desbloquear el audio.
+    */
+    document.addEventListener(
+      "touchstart",
+      () => {
+        if (!musicEnabled) {
+          activateMusic();
+        }
+      },
+      { once: true }
+    );
+
   </script>
+
 </body>
 </html>
